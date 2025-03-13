@@ -1,10 +1,15 @@
-// 수정 내용: count가 Map에 같이 담겨 호출이 되어야 하는데 그러지 않았기에, 장바구니에 담을 상품에 맞는 '개수'를 연동시키지 못하는 코드 오류 수정 시도
+// 1차 수정 내용: count가 Map에 같이 담겨 호출이 되어야 하는데 그러지 않았기에, 장바구니에 담을 상품에 맞는 '개수'를 연동시키지 못하는 코드 오류 수정 시도
 // 현재 count는 if 조건문의 조건식에만 참여하고 그 후 상품이름과 같이 객체에 담겨야 하는데 묶지를 못 했음.
 // 수정 후: cart라는 Map컬렉션의 Value에 Map을 추가해 가격과 개수로 묶어주었고 새로운 키로 할당하여 값을 받도록 함.
 
+// 2차 수정 내용: 메인 함수 호출출
+
 import 'dart:io';
 
-void main() {}
+void main() {
+  ShoppingMall shoppingMall = ShoppingMall(); 
+  shoppingMall.showMenu();
+}
 
 class ShoppingMall {
   Map<String, int> product = {
@@ -74,7 +79,6 @@ class ShoppingMall {
     int allprice = 0;
     cart.forEach((key, value) {
       allprice += (value['price']! * value['count']!);
-      
     });
     print('장바구니에 $allprice원 어치를 담으셨네요!');
   }
